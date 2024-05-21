@@ -1,0 +1,74 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.search {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: rgb(255, 111, 0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo h1 {
+  margin: 0;
+  padding-left: 20px;
+  color: white;
+}
+
+.search-input-wrapper {
+  border-radius: 5px;
+  background-color: white;
+  padding: 5px;
+  flex-grow: 1;
+  max-width: 70%; /* Adjusted to a percentage for better responsiveness */
+  margin: 0 20px;
+  display: flex; /* Added flex display for better input alignment */
+  align-items: center;
+}
+
+.search-icon {
+  color: blue;
+  margin-right: 10px;
+}
+
+.search-input {
+  border: none;
+  outline: none;
+  font-size: 16px;
+  flex-grow: 1;
+  width: 100%; /* Ensure input field takes full width of the wrapper */
+}
+
+.search-btn {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: white;
+  color: blue;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  flex-shrink: 0; /* Prevent the button from shrinking */
+}
+
+/* Optional: Add responsiveness for smaller screens */
+@media (max-width: 768px) {
+  .search {
+    flex-direction: column;
+  }
+  
+  .search-input-wrapper {
+    max-width: 100%;
+    margin: 10px 0;
+  }
+
+  .search-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
