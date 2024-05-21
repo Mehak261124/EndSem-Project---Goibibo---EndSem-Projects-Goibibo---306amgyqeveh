@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Search from "./Search";
 import SortBy from "./SortBy";
 
 const SearchPage = ({ cities, setCities }) => {
   const [hotel, setHotels] = useState([]);
+  
   const ImageWithAlt = ({ src, alt, className }) => (
     <img loading="lazy" src={src} className={className} alt={alt} />
   );
@@ -40,15 +41,17 @@ const SearchPage = ({ cities, setCities }) => {
       <div className="">
         {hotel.map((element) => {
           return (
-            <div className="flex flex-col lg:flex-row items-center justify-center w-full p-6 lg:gap-10 border border-gray">
+            <div key={element.id} className="flex flex-col lg:flex-row items-center justify-center w-full p-6 lg:gap-10 border border-gray">
               <div>
                 <ImageWithAlt
                   src={element.images[0]}
+                  alt="Main hotel image"
                   className="h-[244px] w-[374px]"
                 />
                 <div style={{ display: "flex", gap: "10px", marginTop: "4px" }}>
                   <img
                     src={element.images[1]}
+                    alt="Hotel thumbnail 1"
                     style={{
                       width: "60px",
                       height: "60px",
@@ -57,36 +60,34 @@ const SearchPage = ({ cities, setCities }) => {
                   />
                   <img
                     src={element.images[2]}
+                    alt="Hotel thumbnail 2"
                     style={{
                       width: "60px",
                       height: "60px",
                       borderRadius: "12px",
                     }}
                   />
-
-                  {element.images[3] ? (
+                  {element.images[3] && (
                     <img
                       src={element.images[3]}
+                      alt="Hotel thumbnail 3"
                       style={{
                         width: "60px",
                         height: "60px",
                         borderRadius: "12px",
                       }}
                     />
-                  ) : (
-                    ""
                   )}
-                  {element.images[4] ? (
+                  {element.images[4] && (
                     <img
                       src={element.images[4]}
+                      alt="Hotel thumbnail 4"
                       style={{
                         width: "60px",
                         height: "60px",
                         borderRadius: "12px",
                       }}
                     />
-                  ) : (
-                    ""
                   )}
                 </div>
               </div>
@@ -125,3 +126,4 @@ const SearchPage = ({ cities, setCities }) => {
 };
 
 export default SearchPage;
+
