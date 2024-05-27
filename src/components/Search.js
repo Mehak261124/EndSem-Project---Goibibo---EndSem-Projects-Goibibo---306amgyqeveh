@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "tailwindcss/tailwind.css";
+// import InfoSection from "./SearchPage"
 
-const Search = ({ cities, setCities, hotel, setHotels }) => {
+const Search = ({ cities, setCities, hotel, setHotels, cost }) => {
   const [selectedValue, setSelectedValue] = useState("");
+  const [rupees,setRupees] = useState(0);
 
+  const handleRupees = (e) => {
+    setRupees(e.target.value)
+  }
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
   };
@@ -26,9 +31,8 @@ const Search = ({ cities, setCities, hotel, setHotels }) => {
       return await response.json(); // Parse the JSON response
     }
 
-    // Example usage
     const url = "https://academics.newtonschool.co/api/v1/bookingportals/city";
-    const projectId = "306amgyqeveh"; // Replace with your actual project ID
+    const projectId = "306amgyqeveh"; 
 
     getData(url, projectId)
       .then((responseData) => {
@@ -37,7 +41,7 @@ const Search = ({ cities, setCities, hotel, setHotels }) => {
       .catch((error) => {
         console.error(error);
       });
-  }, []);
+  }, [setCities]);
   useEffect(() => {
     async function getHotels(projectId) {
       try {
@@ -60,7 +64,7 @@ const Search = ({ cities, setCities, hotel, setHotels }) => {
       }
     }
     getHotels("306amgyqeveh");
-  }, [selectedValue]);
+  }, [setHotels]);
 
   console.log(cities);
 
@@ -83,6 +87,30 @@ const Search = ({ cities, setCities, hotel, setHotels }) => {
               </option>
             ))}
           </select>
+          {/* {hotel.map((element) => {
+            return (
+              <InfoSection
+                // rating={element.rating}
+                cost={element.rooms[0].costDetails.baseCost}
+                // tax={element.rooms[0].costDetails.taxesAndFees}
+              />
+            )})} */}
+          <select
+            onChange={handleRupees}
+            value={rupees}>
+              <option>
+                Search for rupees
+              </option>
+              console.log(cost);
+              {cost.map((option) => (
+                <option key ={option.id} value={option.costPerNight}>
+                  {option.costPerNight} 
+                 </option> 
+              ))}
+          </select>
+
+         
+         
         </div>
       </div>
 
